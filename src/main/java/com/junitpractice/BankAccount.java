@@ -3,6 +3,25 @@ package com.junitpractice;
 public class BankAccount {
     private double balance;
     private double minimumBalance;
+    private boolean isActive = true;
+    private String holderName;
+
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getHolderName() {
+        return holderName;
+    }
+
+    public void setHolderName(String holderName) {
+        this.holderName = holderName;
+    }
 
     public BankAccount(double balance, double minimumBalance) {
         this.balance = balance;
@@ -26,6 +45,11 @@ public class BankAccount {
     }
 
     public double deposit(double amount) {
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         balance += amount;
         return balance;
     }
