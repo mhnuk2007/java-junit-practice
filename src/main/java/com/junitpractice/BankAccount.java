@@ -4,7 +4,7 @@ public class BankAccount {
     private double balance;
     private double minimumBalance;
 
-    private BankAccount(double balance, double minimumBalance){
+    public BankAccount(double balance, double minimumBalance) {
         this.balance = balance;
         this.minimumBalance = minimumBalance;
     }
@@ -25,12 +25,19 @@ public class BankAccount {
         this.minimumBalance = minimumBalance;
     }
 
-    public void deposit(double amount){
-        this.balance += amount;
+    public double deposit(double amount) {
+        balance += amount;
+        return balance;
     }
 
-    public void withdraw(double amount){
-        this.balance -= amount;
+    public double withdraw(double amount) {
+        if (balance - amount >= minimumBalance) {
+            balance -= amount;
+            return balance;
+        } else {
+            throw new RuntimeException("Insufficient Funds");
+        }
+
     }
 }
 
